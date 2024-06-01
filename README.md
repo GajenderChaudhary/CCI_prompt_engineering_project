@@ -35,6 +35,8 @@ Apart from these four major types of documents, there are other orders present i
 
 Till now, this project has gone through the following stages: 1) Unique ID assignment to each order and overall Corpus Creation through OCR, 2) Query Design and General Information Extraction from these orders, and 3) further processing of this information to classify the Orders and generate various trends. Following is the elaboration of the workflow employed in this project. 
 
+![Diagram](./PromptPipeline.png)
+
 ### 1.1. Organization of the CCI orders PDF files
 
 Each order passed under section 3 and section 4 of the CCI ACt, 2002 has been downloaded from the website and organized based on the month and year in which it is passed. For example, the order passed in July month of 2014 will be kept in the July folder of 2014. The majority of the CCI orders are organized like this within the parent directory. 
