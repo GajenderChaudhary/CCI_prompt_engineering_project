@@ -2,10 +2,8 @@
 
 Author: Gajender Chaudhary
 
-All Suggestions and Inputs are welcome:
-
+All Suggestions and Inputs are welcome! 
 Contact - 
-
 gajenderchaudhary@protonmail.com, 
 gajender.chaudhary@sopp.iitd.ac.in
 
