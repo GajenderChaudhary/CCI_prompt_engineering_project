@@ -132,5 +132,6 @@ A close review of results is needed to create a more informed outlook on the per
 
 ## Remaining Work/ Ongoing
 
+- Refine the Prompts till stage 2. 
 - Once the pipeline is well attuned to stage 2, stage 3 will involve specific prompt queries on a subset collection of orders for further commentary on the trends in the orders and institutional performance of CCI.
 - Explore the prospect of RAG application.
