@@ -130,6 +130,7 @@ As this remains an ongoing work and is in an early stage, the scope for improvem
 A close review of results is needed to create a more informed outlook on the performance of the prompts and the models on the documents. 
 
 
-## Remaining Work
+## Remaining Work/ Ongoing
 
-Once the pipeline is well attuned to stage 2, stage 3 will involve specific prompt queries on a subset collection of orders for further commentary on the trends in the orders and institutional performance of CCI.
+- Once the pipeline is well attuned to stage 2, stage 3 will involve specific prompt queries on a subset collection of orders for further commentary on the trends in the orders and institutional performance of CCI.
+- Explore the prospect of RAG application.
