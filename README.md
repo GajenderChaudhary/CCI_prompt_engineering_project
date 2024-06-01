@@ -2,18 +2,23 @@
 
 Author: Gajender Chaudhary
 
-Mail: gajenderchaudhary@protonmail.com, gajender.chaudhary@sopp.iitd.ac.in
+All Suggestions and Inputs are welcome:
+
+Contact - 
+
+gajenderchaudhary@protonmail.com, 
+gajender.chaudhary@sopp.iitd.ac.in
 
 ## Project Details
 
 This project is a sub-part of a Ph.D. thesis at School of Public Policy, IIT Delhi, that maps out the evolution of competition policy in India through primary analysis of Competition
 Commission of India and its interaction with global trends. This is a work in progress undergoing a trial-and-error approach where different computational techniques are being explored to optimize the relevant information that can be extracted from the available CCI orders and its linking with the larger political economy trends in India. The orders passed by the Competition Commission of India are downloaded from the Competition Commission of India website and have been queried using prominent OpenAI Models like GPT-3.5 Turbo, and GPT-4.
 
-Till now in this project (May 2024), various prompts have been tested on the CCI orders to create a performance assessment of these models on such publicly available documents. There are several lessons learned in this project till now and scope for improvement has been identified. However, the code and workflow shared in this repository can serve as useful guide for others to pursue such engagements of their own.  
+Till now in this project (May 2024), various prompts have been tested on the CCI orders to create a performance assessment of these models on such publicly available documents. There are several lessons learned in this project till now and the scope for further improvement has been identified and remains an ongoing endeavour. A major caveat here should be mentioned as the responses from LLMs have been extracted very recently (mid-May 2024). The later stage which deals with the processing of results obtained from LLMs is a haste exercise meant solely to gain a primitive sense of aggregated results and generate a feedback loop for further prompt refinement and aggregated trends generation. Nonetheless, the code and workflow shared in this repository can serve as useful guides for others to pursue such engagements of their own.  
 
 ## Data Description
 
-The orders downloaded from the Competition Commission of India website are referred to as antitrust orders, as they are meant to address the issue of anti-competitive agreements under section 3 of the CCI Act, 2002, and abuse of dominant position under section 4 of CCI Act, 2002. 
+The orders downloaded from the Competition Commission of India website are referred to as antitrust orders as they address the issue of anti-competitive agreements under section 3 of the CCI Act, 2002, and abuse of dominant position under section 4 of CCI Act, 2002. 
 
 There are a total of **1162** CCI documents for the period of 2010 to 2022 which are mainly composed of the following sections: Section 26(1), Section 26(2), Section 26(6), and Section 27 which represent different stages of the case progression and the outlook of the judgment. 
 
@@ -48,7 +53,7 @@ This order was passed in July of 2014, hence 2014_7 in the first two identifiers
 
 The third Identifier is the serial number assigned to the order which means that out of all the orders that were passed in July month of 2014. This order was assigned the 11th serial position during the Unique ID Assignment. 
 
-The Fourth Identifier is supposed to handle a scenario where there is more than one document associated with a particular order. The Default value for this identifier is 1 which means the single document associated with that given order. In a scenario, when the number of documents in the folder exceeds one. The unique ID assignment will account for that. 
+The Fourth Identifier is supposed to handle a scenario in which there is more than one document associated with a particular order. The Default value for this identifier is 1 for a single document associated with that given order. When an order has more than one document, the fourth placeholder will handle that as explained through next example. 
 
 Example 2 - A document in 2017 month of April has 3 Documents. Then Unique ID of each document should be - 
 
@@ -71,9 +76,9 @@ Each document page is converted to an image using the PyPDFium2 library. Documen
 Each page of the document further adds a page identifier to the unique ID in the output. For example, if a document has 3 pages. Each page would have the following Unique ID - 
 2014_7_11_1_1.png,  2014_7_11_1_2.png,  2014_7_11_1_3.png
 
-The page number at the end helps in reassembling the text file together at the end of this process in the sequence of the original PDF file.
+The page number at the end helps in merging of the text files for each page as per the sequence of the original PDF file.
 
-In the render method of image generation of the pypdfium2 library, the scale is kept at 4 i.e., 288 dpi resolution. This value results in high resolution image with not much bigger file size to serve the text extraction purpose. 
+To generate a high pixel image, the scale is kept at 4 i.e., 288 dpi resolution in the render method of the pypdfium2 library. This is an optimized value that results in sufficient high-resolution images and not large file sizes helping in avoiding the lag and bloat during the text extraction process. 
 
 
 #### 1.3.2. Extract text from the generated image
@@ -90,27 +95,41 @@ Once the text is extracted from a page image file for a given order and is avail
 
 ### 2.1. Prompt Engineering Design and Process
 
-Once the corpus is ready, it is open for interaction with the OpenAI Models like GPT-3.5 Turbo and GPT 4. Hence, the first step is to identify indicators and queries of interest that can be employed on such text files. For this set of orders, the following dimensions were identified: Descriptive Information (Date of the order, Case No., Informant and Opposite Party, Section No., CCI members who presided over that order, Penalty amount), Inferential Information (Industrial Category to which the order belongs, Regional Representation), General Summarization Task, Extractive Information Task (relevant quotes from the order). 
+Once the corpus is ready, it is open for interaction with the OpenAI Models like GPT-3.5 Turbo and GPT 4. The first step deals with the identification of indicators and queries of interest that can be employed on such text files. 
 
-Based on the above-identified dimension, prompts were developed and refined to extract the desired output while keeping in mind the guidelines provided in the prompt engineering practice which prevents a check for Hallucination and nudge the performance of a model in a desired direction. 
+For this set of orders, the following dimensions were identified: Descriptive Information (Date of the order, Case No., Informant and Opposite Party, Section No., CCI members who presided over that order, Penalty amount), Inferential Information (Industrial Category to which the order belongs, Regional Representation), General Summarization Task, Extractive Information Task (relevant quotes from the order). 
+
+Based on the above-identified dimension, prompts were developed and refined to extract the desired output while keeping in mind the general guidelines that helps in creating a check for Hallucination and nudge the performance of a model in a desired direction. 
 
 #### Prerequisite for further process
 
 - An OpenAI API key
-- Intermediate Python
+- Intermediate Python (OOPS, File and Text Manipulation)
 - Familiarity with MongoDB and JSON Schema
-- Familiarity with OpenAI Chat Completion Function
+- Familiarity with OpenAI Ecosystem (Tiktoken, completion function, GPT Models)
 
-### 2.2. Prompt Development and Function Code interaction
+### 2.2. Prompt Development and OpenAI Request Function Code interaction
 
-### 2.3.
+Once the indicators have been identified. The prompt is designed and tested over some set of documents to assess the performance of different models and possible scaling issues that might arise as it will run on all the documents. Through multiple iterations, the outcome of this process results in the final prompt that can be scaled for all documents. 
 
-### Full Workflow
+Due to variations in the token size of an order, both the GPT 3.5 turbo model and the GPT-4 model had to be used. As GPT 3.5 Turbo can handle only a context token length of 16k, while GPT 4 can handle a context length of 128k. For above 100 plus orders GPT 4 had to be used. 
 
+
+### 2.3. Scaled Prompt Query and MongoDB Dump of the response (General Information Extraction)
+
+This stage is referred to as General Information extraction where the response on the above-identified dimensions is extracted for each order. Once a prompt has been finalized, it runs on all the orders, and output is requested in a desired JSON schema which can be stored in the MongoDB for further analysis and aggregation. 
+
+### 2.4. Processing of Results and Review
+
+At this stage, the attempt is made to generate some aggregate results and review the performance. At this stage, the different prompt engineering pipeline takes over. 
 
 ## Success and Failures
 
-### Results Review
+As this remains an ongoing work and is in an early stage, the scope for improvement is vast. As of now, the aggregation work is incomplete and needs improvement. Further, some mistakes in the general information extraction stage can be avoided. 
+
+A close review of results is needed to create a more informed outlook on the performance of the model and the prompts. 
 
 
 ## Remaining Work
+
+Once the pipeline is well attuned to stage 2, stage 3 will involve specific prompt queries on a subset collection of orders for further commentary on the orders and institutional performance.
