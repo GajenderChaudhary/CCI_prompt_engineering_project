@@ -8,6 +8,9 @@ import json
 
 corpus_directory = r"/Users/gajenderchaudhary/Work/phd_work/Jan-May 2024/final_corpus (2010 - 2022)"
 
+# Whole Prompt query code base lie on four class and some external input data - Request class, load class, tokenizer class, and Feature extraction class. 
+# All the external input variable provide context for the text orders on which these query are run. 
+
 # Request Class
 class request():
     def __init__(self):
