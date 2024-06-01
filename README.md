@@ -110,7 +110,7 @@ Based on the above-identified dimension, prompts were developed and refined to e
 
 ### 2.2. Prompt Development and OpenAI Request Function Code interaction
 
-Once the indicators have been identified. The prompt is designed and tested over some set of documents to assess the performance of different models and possible scaling issues that might arise as it will run on all the documents. Through multiple iterations, the outcome of this process results in the final prompt that can be scaled for all documents. 
+Once the indicators have been identified, the prompt is designed and tested over some set of documents to assess the performance of different models and possible scaling issues that might arise as it will run on all the documents. Through multiple iterations, the outcome of this process results in the final prompt that can be scaled for all documents. 
 
 Due to variations in the token size of an order, both the GPT 3.5 turbo model and the GPT-4 model had to be used. As GPT 3.5 Turbo can handle only a context token length of 16k, while GPT 4 can handle a context length of 128k. For above 100 plus orders GPT 4 had to be used. 
 
@@ -127,9 +127,9 @@ At this stage, the attempt is made to generate some aggregate results and review
 
 As this remains an ongoing work and is in an early stage, the scope for improvement is vast. As of now, the aggregation work is incomplete and needs improvement. Further, some mistakes in the general information extraction stage can be avoided. 
 
-A close review of results is needed to create a more informed outlook on the performance of the model and the prompts. 
+A close review of results is needed to create a more informed outlook on the performance of the prompts and the models on the documents. 
 
 
 ## Remaining Work
 
-Once the pipeline is well attuned to stage 2, stage 3 will involve specific prompt queries on a subset collection of orders for further commentary on the orders and institutional performance.
+Once the pipeline is well attuned to stage 2, stage 3 will involve specific prompt queries on a subset collection of orders for further commentary on the trends in the orders and institutional performance of CCI.
