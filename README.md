@@ -35,7 +35,7 @@ Apart from these four major types of documents, there are other orders present i
 
 Till now, this project has gone through the following stages: 1) Unique ID assignment to each order and overall Corpus Creation through OCR, 2) Query Design and General Information Extraction from these orders, and 3) further processing of this information to classify the Orders and generate various trends. Following is the elaboration of the workflow employed in this project. 
 
-![Diagram](./PromptPipeline.png)
+![Diagram](./progress_report-Page-6.png)
 
 ### 1.1. Organization of the CCI orders PDF files
 
