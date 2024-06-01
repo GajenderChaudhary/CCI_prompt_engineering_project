@@ -30,15 +30,15 @@ Apart from these four major types of documents, there are other orders present i
 
 ## Project Workflow
 
-Till now, this project has gone through the following stages: 1) Unique ID assignment to each order and overall Corpus Creation through OCR, 2) Query Design and General Information Extraction from these orders, and 3) further processing of this information to classify the Orders and generate various trends.  Following is the elaboration of the workflow employed in this project. 
+Till now, this project has gone through the following stages: 1) Unique ID assignment to each order and overall Corpus Creation through OCR, 2) Query Design and General Information Extraction from these orders, and 3) further processing of this information to classify the Orders and generate various trends. Following is the elaboration of the workflow employed in this project. 
 
-### Organization of the CCI orders PDF files
+### 1.1. Organization of the CCI orders PDF files
 
 Each order passed under section 3 and section 4 of the CCI ACt, 2002 has been downloaded from the website and organized based on the month and year in which it is passed. For example, the order passed in July month of 2014 will be kept in the July folder of 2014. The majority of the CCI orders are organized like this within the parent directory. 
 
 In case, when there are two or more documents associated with each order such as dissent judgment or supplementary order. A directory(folder) is created to keep the collection together in the folder. 
 
-### Unique ID assignment
+### 1.2. Unique ID assignment
 
 To keep track of the documents during the project workflow, each document has been assigned a Unique ID which overlaps with the organization of the pdf files and keep the unique nature of each document. The general format for unique ID assignment is (Year_Month_SerialNumber_OrderNumber).pdf. Such a unique ID assignment has four sub-identifiers which is best explained through two examples (fictional). 
 
@@ -55,8 +55,7 @@ Example 2 - A document in 2017 month of April has 3 Documents. Then Unique ID of
 2017_4_4_1.pdf,  2017_4_4_2.pdf,  2017_4_4_3.pdf.
 
 
-
-### Creation of Text Corpus out of CCI orders
+### 1.3. Creation of Text Corpus out of CCI orders
 
 Once each PDF file of CCI documents has been assigned a unique ID, the text within the document has been extracted through Optical Character Recognition which is two-stage process: 
 
@@ -65,19 +64,19 @@ Once each PDF file of CCI documents has been assigned a unique ID, the text with
 3) Merge the text extracted from each page image of an order to create one text file of that given order.
 
 
-#### Conversion of PDF file pages to PNG images 
+#### 1.3.1. Conversion of PDF file pages to PNG images 
 
 Each document page is converted to an image using the PyPDFium2 library. Documentation is available at the following link: https://pypi.org/project/pypdfium2/
 
 Each page of the document further adds a page identifier to the unique ID in the output. For example, if a document has 3 pages. Each page would have the following Unique ID - 
 2014_7_11_1_1.png,  2014_7_11_1_2.png,  2014_7_11_1_3.png
 
-The page number at the end helps in reassembling the text file together at the end of this process in the sequence of the original pdf file.
+The page number at the end helps in reassembling the text file together at the end of this process in the sequence of the original PDF file.
 
 In the render method of image generation of the pypdfium2 library, the scale is kept at 4 i.e., 288 dpi resolution. This value results in high resolution image with not much bigger file size to serve the text extraction purpose. 
 
 
-#### Extract text from the generated image
+#### 1.3.2. Extract text from the generated image
 
 The Tesseract engine (version 5.3.4) is installed on the system path environment. Further, the Pytesseract library is employed to interact with the tesseract engine and extract the text from the PNG file. Documentation is available at the following link: 
 
@@ -85,10 +84,26 @@ The Tesseract engine (version 5.3.4) is installed on the system path environment
 
 2) Pytesseract - https://pypi.org/project/pytesseract/
 
+#### 1.3.3. Merge the text files generated from each page
 
-### Prompt Generation Process
+Once the text is extracted from a page image file for a given order and is available in the format: (YYYY_MM_Snum_Onum_page.txt). Each page text file of an order is assembled back together to create a single order text file.
 
+### 2.1. Prompt Engineering Design and Process
 
+Once the corpus is ready, it is open for interaction with the OpenAI Models like GPT-3.5 Turbo and GPT 4. Hence, the first step is to identify indicators and queries of interest that can be employed on such text files. For this set of orders, the following dimensions were identified: Descriptive Information (Date of the order, Case No., Informant and Opposite Party, Section No., CCI members who presided over that order, Penalty amount), Inferential Information (Industrial Category to which the order belongs, Regional Representation), General Summarization Task, Extractive Information Task (relevant quotes from the order). 
+
+Based on the above-identified dimension, prompts were developed and refined to extract the desired output while keeping in mind the guidelines provided in the prompt engineering practice which prevents a check for Hallucination and nudge the performance of a model in a desired direction. 
+
+#### Prerequisite for further process
+
+- An OpenAI API key
+- Intermediate Python
+- Familiarity with MongoDB and JSON Schema
+- Familiarity with OpenAI Chat Completion Function
+
+### 2.2. Prompt Development and Function Code interaction
+
+### 2.3.
 
 ### Full Workflow
 
